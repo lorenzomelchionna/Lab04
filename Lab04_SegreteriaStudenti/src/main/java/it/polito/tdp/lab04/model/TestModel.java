@@ -1,22 +1,20 @@
 package it.polito.tdp.lab04.model;
 
-import java.util.List;
-
 public class TestModel {
 
 	public static void main(String[] args) {
 
 		Model model = new Model();
 		
-		List<Corso> Corsi = model.getTuttiICorsi();
+		Studente s = new Studente(146101, "VIGGIANO", "CLAUDIO");
+		Corso c = new Corso("02CIXPG", 8, "Sistemi informativi aziendali",1);
 		
-		for(Corso c : Corsi)
-			System.out.println(c);
+		boolean test = false;
 		
-		Studente Studente = model.getStudenteByMatricola(146101);
+		test = model.isStudenteIscrittoCorso(s, c);
 		
-		System.out.println(Studente);
-
+		System.out.print(test);
+		
 	}
 
 }

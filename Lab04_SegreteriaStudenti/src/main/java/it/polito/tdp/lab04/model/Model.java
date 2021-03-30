@@ -22,8 +22,8 @@ public class Model {
 		return StudenteDAO.getStudentebyMatricola(matricola);
 	}
 	
-	public List<Studente> getStudentiIscrittiAlCorso(Corso corso) {
-		return CorsoDAO.getStudentiIscrittiAlCorso(corso);
+	public List<Studente> getStudentiIscrittiAlCorso(Corso Corso) {
+		return CorsoDAO.getStudentiIscrittiAlCorso(Corso);
 	}
 	
 	public List<Corso> getCorsiByStudente(Studente Studente) {
@@ -32,6 +32,22 @@ public class Model {
 	
 	public List<Studente> getTuttiGliStudenti() {
 		return StudenteDAO.getTuttiGliStudenti();
+	}
+	
+	public boolean isStudenteIscrittoCorso(Studente Studente, Corso Corso) {
+		
+		List<Studente> IscrittiCorso = CorsoDAO.getStudentiIscrittiAlCorso(Corso);
+		
+		for(Studente s : IscrittiCorso)
+			if(s.getMatricola() == Studente.getMatricola())
+				return true;
+		
+		return false;
+		
+	}
+	
+	public void iscriviStudenteCorso(Studente Studente, Corso Corso) {
+		CorsoDAO.inscriviStudenteACorso(Studente, Corso);
 	}
 	
 }

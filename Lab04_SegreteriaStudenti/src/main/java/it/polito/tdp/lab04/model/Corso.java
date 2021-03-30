@@ -1,16 +1,11 @@
 package it.polito.tdp.lab04.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Corso {
 	
 	private String codice;
 	private int crediti;
 	private String nome;
 	private int pd;
-	
-	List<Studente> StudentiIscritti;
 
 	public Corso(String codice, int crediti, String nome, int pd) {
 		super();
@@ -18,7 +13,6 @@ public class Corso {
 		this.crediti = crediti;
 		this.nome = nome;
 		this.pd = pd;
-		StudentiIscritti = new ArrayList<>();
 	}
 
 	public String getCodice() {

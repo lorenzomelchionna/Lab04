@@ -47,6 +47,8 @@ public class FXMLController {
     @FXML
     void doCercaCorsi(ActionEvent event) {
     	
+    	txtOutput.clear();
+    	
     	List<Corso> CorsiStudente = new ArrayList<>();
     	int numeroMatricola;
     	boolean trovata = false;
@@ -74,8 +76,11 @@ public class FXMLController {
 
     }
 
+
     @FXML
     void doCercaIscritti(ActionEvent event) {
+    	
+    	txtOutput.clear();
     	
     	if(choiceCorso.getValue().equals("") || choiceCorso.getValue() == null) {
     		txtOutput.setText("Devi selezionare un corso!");
@@ -116,9 +121,34 @@ public class FXMLController {
     
     @FXML
     void doIscrivi(ActionEvent event) {
-    	
-    	
 
+    	int matricola;
+    	
+    	try{
+    		matricola = Integer.parseInt(txtMatricola.getText());
+    	} catch(NumberFormatException nfe) {
+    		throw new RuntimeException("Error input", nfe);
+    	}
+  
+    	for(Corso c : model.getTuttiICorsi()) 
+    		if(c.getNome().equals(choiceCorso.getValue())) 
+    			for(Studente s : model.getTuttiGliStudenti()) {
+    				
+    				if(s.getMatricola() == matricola) {
+    					
+    					if(model.isStudenteIscrittoCorso(s, c))
+    						txtOutput.setText("Studente già iscritto a questo corso!");
+    					else {
+    						
+    						model.iscriviStudenteCorso(s, c);
+    						txtOutput.setText("Studente iscritto con successo!");
+   
+    					}
+    					
+    				}
+ 
+    			}
+    	
     }
 
     @FXML
